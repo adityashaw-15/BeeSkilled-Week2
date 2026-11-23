@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Digital Clock | Week 2</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .clock-container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 550px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        #clock {
+            font-size: clamp(36px, 8vw, 70px);
+            font-weight: bold;
+            color: #67e8f9;
+            font-variant-numeric: tabular-nums;
+        }
+
+        #date {
+            margin-top: 20px;
+            color: #cbd5e1;
+            font-size: 17px;
+        }
+
+        .clock-container:hover {
+            box-shadow: 0 0 30px rgba(103, 232, 249, 0.25);
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="clock-container">
+        <h1>Digital Clock</h1>
+        <div id="clock">00:00:00</div>
+        <div id="date">Loading date...</div>
+        <p>BeeSkilled - Week 2 Assignment</p>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            const time = now.toLocaleTimeString("en-GB", {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false
+            });
+
+            const date = now.toLocaleDateString("en-IN", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+
+            document.getElementById("clock").textContent = time;
+            document.getElementById("date").textContent = date;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+</html>
